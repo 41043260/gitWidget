@@ -42,7 +42,17 @@ int main(int argc, char *argv[])
 
 
     //組員3
-
+    QVBoxLayout *tab4Layout = new QVBoxLayout;
+    QPushButton *fileButton = new QPushButton("選擇檔案並更改文字");
+    tab4Layout->addWidget(fileButton);
+    tab4->setLayout(tab4Layout);
+    //檔案選擇功能
+    QObject::connect(fileButton, &QPushButton::clicked, [&]() {
+        QString filePath = QFileDialog::getOpenFileName(window, "選擇檔案");
+        if (!filePath.isEmpty()) {
+            leaderLabel->setText(filePath);
+        }
+    });
 
 
 
