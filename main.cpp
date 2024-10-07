@@ -32,7 +32,20 @@ int main(int argc, char *argv[])
     tab1->setLayout(tab1Layout);
 
     //組員1
+    QVBoxLayout *tab2Layout = new QVBoxLayout;
+    QPushButton *colorButton = new QPushButton("更改文字顏色");
+    tab2Layout->addWidget(colorButton);
+    tab2->setLayout(tab2Layout);
 
+    //顏色修改功能
+    QObject::connect(colorButton, &QPushButton::clicked, [&]() {
+        QColor color = QColorDialog::getColor(Qt::white, window);
+        if (color.isValid()) {
+            QPalette palette = leaderLabel->palette();
+            palette.setColor(QPalette::WindowText, color);
+            leaderLabel->setPalette(palette);
+        }
+    });
 
 
 
